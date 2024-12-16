@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cdonv0bp8piyw"]
+
+[ext_resource type="Script" path="res://scenes/entity/player/player.gd" id="1_b1ueu"]
+[ext_resource type="PackedScene" uid="uid://ugibvbfhjpkf" path="res://scenes/component/ai/player/player_ai_component.tscn" id="2_svv4e"]
+[ext_resource type="PackedScene" uid="uid://dwy1ydktpn4qj" path="res://scenes/component/velocity/velocity_component.tscn" id="3_hwiit"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j86ts"]
+size = Vector2(64, 64)
+
+[sub_resource type="Gradient" id="Gradient_8digw"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1bxeo"]
+gradient = SubResource("Gradient_8digw")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vt0ae"]
+size = Vector2(64, 64)
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 2
+script = ExtResource("1_b1ueu")
+
+[node name="PlayerAIComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("2_svv4e")]
+velocity_component = NodePath("../VelocityComponent")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_hwiit")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_j86ts")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -32)
+texture = SubResource("GradientTexture2D_1bxeo")
+
+[node name="DoorArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="DoorArea"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_vt0ae")
+
+[connection signal="area_entered" from="DoorArea" to="." method="_on_door_area_area_entered"]
+[connection signal="area_exited" from="DoorArea" to="." method="_on_door_area_area_exited"]

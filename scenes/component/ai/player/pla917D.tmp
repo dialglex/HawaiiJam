@@ -1,0 +1,50 @@
+[gd_scene load_steps=9 format=3 uid="uid://ugibvbfhjpkf"]
+
+[ext_resource type="Script" path="res://scenes/component/ai/player/player_ai_component.gd" id="1_7a3qt"]
+[ext_resource type="PackedScene" uid="uid://8hb2xxgg7diq" path="res://scenes/component/walk_component.tscn" id="1_bj8g1"]
+[ext_resource type="PackedScene" uid="uid://dwy1ydktpn4qj" path="res://scenes/component/velocity_component.tscn" id="2_4ueus"]
+[ext_resource type="PackedScene" uid="uid://bi17bdkydgdlr" path="res://scenes/manager/state/state_machine.tscn" id="2_lh6io"]
+[ext_resource type="Script" path="res://scenes/component/ai/player/idle.gd" id="2_rejsc"]
+[ext_resource type="Script" path="res://scenes/component/ai/player/walk.gd" id="3_v4uo0"]
+[ext_resource type="Script" path="res://scenes/component/ai/player/fall.gd" id="4_5f57b"]
+[ext_resource type="Script" path="res://scenes/component/ai/player/jump.gd" id="5_qu7vx"]
+
+[node name="PlayerAIComponent" type="Node"]
+script = ExtResource("1_7a3qt")
+
+[node name="StateMachine" parent="." instance=ExtResource("2_lh6io")]
+
+[node name="Idle" type="Node" parent="StateMachine"]
+script = ExtResource("2_rejsc")
+
+[node name="Walk" type="Node" parent="StateMachine"]
+script = ExtResource("3_v4uo0")
+
+[node name="Fall" type="Node" parent="StateMachine"]
+script = ExtResource("4_5f57b")
+
+[node name="Jump" type="Node" parent="StateMachine"]
+script = ExtResource("5_qu7vx")
+
+[node name="WalkComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("1_bj8g1")]
+velocity_component = NodePath("../VelocityComponent")
+ground_x_acceleration = null
+air_x_acceleration = null
+ground_x_deceleration = null
+air_x_deceleration = null
+max_x_speed = null
+gravity_acceleration = null
+jump_speed = null
+max_y_speed = null
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_4ueus")]
+
+[node name="HoldJumpTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+one_shot = true
+
+[node name="CoyoteJumpTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.04
+one_shot = true

@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://ugibvbfhjpkf"]
+
+[ext_resource type="Script" path="res://scenes/component/AI/player_ai_component.gd" id="1_7a3qt"]
+[ext_resource type="PackedScene" uid="uid://8hb2xxgg7diq" path="res://scenes/component/walk_component.tscn" id="1_bj8g1"]
+[ext_resource type="PackedScene" uid="uid://dwy1ydktpn4qj" path="res://scenes/component/velocity_component.tscn" id="2_4ueus"]
+
+[node name="PlayerAIComponent" type="Node"]
+script = ExtResource("1_7a3qt")
+
+[node name="WalkComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("1_bj8g1")]
+velocity_component = NodePath("../VelocityComponent")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("2_4ueus")]
+
+[node name="HoldJumpTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.2
+one_shot = true
+
+[node name="CoyoteJumpTimer" type="Timer" parent="."]
+process_callback = 0
+wait_time = 0.04
+one_shot = true

@@ -1,0 +1,44 @@
+[gd_scene load_steps=7 format=3 uid="uid://ugibvbfhjpkf"]
+
+[ext_resource type="Script" path="res://scenes/component/ai/player/player_ai_component.gd" id="1_7a3qt"]
+[ext_resource type="Script" path="res://scenes/component/ai/player/idle.gd" id="2_rejsc"]
+[ext_resource type="Script" path="res://scenes/component/ai/player/walk.gd" id="3_v4uo0"]
+[ext_resource type="Script" path="res://scenes/component/ai/player/fall.gd" id="4_5f57b"]
+[ext_resource type="Script" path="res://scenes/component/ai/player/jump.gd" id="5_qu7vx"]
+[ext_resource type="Script" path="res://scenes/component/ai/player/coyote_fall.gd" id="6_0hp4g"]
+
+[node name="PlayerAIComponent" type="Node"]
+script = ExtResource("1_7a3qt")
+ground_x_acceleration = 7500
+air_x_acceleration = 7500
+ground_x_deceleration = 5000
+air_x_deceleration = 2500
+max_x_speed = 350
+gravity_acceleration = 2950
+jump_speed = 850
+max_y_speed = 1500
+
+[node name="Idle" type="Node" parent="."]
+script = ExtResource("2_rejsc")
+
+[node name="Walk" type="Node" parent="."]
+script = ExtResource("3_v4uo0")
+
+[node name="Fall" type="Node" parent="."]
+script = ExtResource("4_5f57b")
+
+[node name="CoyoteFall" type="Node" parent="."]
+script = ExtResource("6_0hp4g")
+
+[node name="Timer" type="Timer" parent="CoyoteFall"]
+process_callback = 0
+wait_time = 0.08
+one_shot = true
+
+[node name="Jump" type="Node" parent="."]
+script = ExtResource("5_qu7vx")
+
+[node name="Timer" type="Timer" parent="Jump"]
+process_callback = 0
+wait_time = 0.2
+one_shot = true

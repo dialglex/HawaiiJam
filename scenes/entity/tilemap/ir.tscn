@@ -1,0 +1,21 @@
+[gd_scene load_steps=6 format=3 uid="uid://bbvvo8bv7u2cg"]
+
+[ext_resource type="Shader" path="res://shaders/gradient.gdshader" id="1_2aip6"]
+[ext_resource type="TileSet" uid="uid://cso1vrvprep0" path="res://resources/tile_set.tres" id="2_2euws"]
+
+[sub_resource type="Gradient" id="Gradient_pheli"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0.420527, 0.00142871, 0.631672, 1, 1, 0.0666667, 0, 1, 0.929412, 0.666667, 0.0627451, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_1y1gl"]
+gradient = SubResource("Gradient_pheli")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x3o3v"]
+shader = ExtResource("1_2aip6")
+shader_parameter/alpha = null
+shader_parameter/sampler = SubResource("GradientTexture1D_1y1gl")
+
+[node name="IR" type="TileMapLayer"]
+material = SubResource("ShaderMaterial_x3o3v")
+tile_map_data = PackedByteArray(0, 0, 20, 0, 8, 0, 0, 0, 1, 0, 3, 0, 0, 0, 21, 0, 8, 0, 0, 0, 2, 0, 3, 0, 0, 0, 18, 0, 8, 0, 0, 0, 0, 0, 3, 0, 0, 0, 19, 0, 8, 0, 0, 0, 1, 0, 3, 0, 0, 0)
+tile_set = ExtResource("2_2euws")

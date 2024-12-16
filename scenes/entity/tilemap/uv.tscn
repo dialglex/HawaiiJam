@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=4 uid="uid://bfl7oi3g21f4p"]
+
+[ext_resource type="Material" uid="uid://cpsculc5nwfgf" path="res://resources/uv_shader_material.tres" id="1_j4ahy"]
+[ext_resource type="TileSet" uid="uid://cso1vrvprep0" path="res://resources/tile_set.tres" id="2_singu"]
+
+[node name="UV" type="TileMapLayer"]
+material = ExtResource("1_j4ahy")
+tile_map_data = PackedByteArray("AAAYAAYAAAAAAAMAAAAZAAYAAAABAAMAAAAaAAYAAAACAAMAAAALAAgAAAACAAAAAAAKAAgAAAABAAAAAAAJAAgAAAABAAAAAAAIAAgAAAABAAAAAAAHAAgAAAABAAAAAAAGAAgAAAABAAAAAAAHAAkAAAABAAIAAAAIAAkAAAAGAAEAAAAJAAkAAAABAAEAAAAFAAgAAAABAAAAAAAEAAgAAAAAAAAAAAAEAAkAAAAAAAIAAAAFAAkAAAABAAIAAAAGAAkAAAABAAIAAAAKAAkAAAABAAEAAAAKAAoAAAABAAIAAAAJAAoAAAABAAIAAAALAAoAAAACAAIAAAALAAkAAAACAAEAAAAIAAoAAAAAAAIAAAA=")
+tile_set = ExtResource("2_singu")

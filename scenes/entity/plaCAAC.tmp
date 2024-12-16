@@ -1,0 +1,30 @@
+[gd_scene load_steps=7 format=3 uid="uid://cdonv0bp8piyw"]
+
+[ext_resource type="Script" path="res://scenes/entity/player.gd" id="1_b1ueu"]
+[ext_resource type="PackedScene" uid="uid://ugibvbfhjpkf" path="res://scenes/component/ai/player/player_ai_component.tscn" id="2_svv4e"]
+[ext_resource type="PackedScene" uid="uid://dwy1ydktpn4qj" path="res://scenes/component/velocity/velocity_component.tscn" id="3_hwiit"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j86ts"]
+size = Vector2(64, 64)
+
+[sub_resource type="Gradient" id="Gradient_8digw"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_1bxeo"]
+gradient = SubResource("Gradient_8digw")
+
+[node name="Player" type="CharacterBody2D"]
+collision_layer = 0
+script = ExtResource("1_b1ueu")
+
+[node name="PlayerAIComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("2_svv4e")]
+velocity_component = NodePath("../VelocityComponent")
+
+[node name="VelocityComponent" parent="." instance=ExtResource("3_hwiit")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_j86ts")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(1, -32)
+texture = SubResource("GradientTexture2D_1bxeo")

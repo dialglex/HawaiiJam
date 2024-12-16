@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://jbqktcy2a7f6"]
+
+[ext_resource type="Script" path="res://scenes/manager/wavelength/wavelength_manager.gd" id="1_4pqsh"]
+
+[node name="WavelengthManager" type="Node"]
+script = ExtResource("1_4pqsh")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+z_index = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_bottom = 128
+
+[node name="Slider" type="ColorRect" parent="MarginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1024, 32)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+color = Color(0.501961, 0.501961, 0.501961, 1)
+
+[node name="Point" type="ColorRect" parent="MarginContainer/Slider"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 96)
+layout_mode = 0
+offset_top = -32.0
+offset_right = 16.0
+offset_bottom = 64.0
