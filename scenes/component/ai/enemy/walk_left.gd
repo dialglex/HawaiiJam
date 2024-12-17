@@ -5,7 +5,7 @@ func physics_process(host: Node, delta: float) -> String:
 	movement(delta)
 	
 	var enemy := host as Enemy
-	if not enemy.left_ray_cast.is_colliding():
+	if enemy.left_ray_cast.is_colliding() or not enemy.down_left_ray_cast.is_colliding():
 		return "WalkRight"
 	return ""
 

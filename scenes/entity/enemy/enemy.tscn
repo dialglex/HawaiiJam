@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://bplc5tcfc4x5a"]
+[gd_scene load_steps=7 format=3 uid="uid://bplc5tcfc4x5a"]
 
 [ext_resource type="Script" path="res://scenes/entity/enemy/enemy.gd" id="1_1r3l3"]
 [ext_resource type="PackedScene" uid="uid://chjppwcyrsogd" path="res://scenes/component/ai/enemy/enemy_ai_component.tscn" id="2_nw0w1"]
@@ -8,9 +8,12 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j86ts"]
 size = Vector2(64, 64)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m046m"]
+size = Vector2(64, 64)
+
 [node name="Enemy" type="CharacterBody2D"]
 use_parent_material = true
-collision_layer = 2
+collision_layer = 0
 script = ExtResource("1_1r3l3")
 
 [node name="EnemyAIComponent" parent="." node_paths=PackedStringArray("velocity_component") instance=ExtResource("2_nw0w1")]
@@ -28,7 +31,25 @@ position = Vector2(1, -32)
 texture = ExtResource("4_v1e70")
 
 [node name="LeftRayCast" type="RayCast2D" parent="."]
-position = Vector2(-48, -1)
+position = Vector2(-32, -32)
+target_position = Vector2(-16, 0)
 
 [node name="RightRayCast" type="RayCast2D" parent="."]
+position = Vector2(32, -32)
+target_position = Vector2(16, 0)
+
+[node name="DownLeftRayCast" type="RayCast2D" parent="."]
+position = Vector2(-48, -1)
+target_position = Vector2(0, 16)
+
+[node name="DownRightRayCast" type="RayCast2D" parent="."]
 position = Vector2(48, -1)
+target_position = Vector2(0, 16)
+
+[node name="PlayerArea" type="Area2D" parent="."]
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_m046m")

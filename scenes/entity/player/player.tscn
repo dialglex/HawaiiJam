@@ -1,16 +1,12 @@
-[gd_scene load_steps=8 format=3 uid="uid://cdonv0bp8piyw"]
+[gd_scene load_steps=7 format=3 uid="uid://cdonv0bp8piyw"]
 
 [ext_resource type="Script" path="res://scenes/entity/player/player.gd" id="1_b1ueu"]
 [ext_resource type="PackedScene" uid="uid://ugibvbfhjpkf" path="res://scenes/component/ai/player/player_ai_component.tscn" id="2_svv4e"]
 [ext_resource type="PackedScene" uid="uid://dwy1ydktpn4qj" path="res://scenes/component/velocity/velocity_component.tscn" id="3_hwiit"]
+[ext_resource type="Texture2D" uid="uid://cp1cifnwgm0jc" path="res://assets/image/player.png" id="4_mvdqk"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j86ts"]
 size = Vector2(64, 64)
-
-[sub_resource type="Gradient" id="Gradient_8digw"]
-
-[sub_resource type="GradientTexture2D" id="GradientTexture2D_1bxeo"]
-gradient = SubResource("Gradient_8digw")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vt0ae"]
 size = Vector2(64, 64)
@@ -29,8 +25,8 @@ position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_j86ts")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(1, -32)
-texture = SubResource("GradientTexture2D_1bxeo")
+position = Vector2(0, -32)
+texture = ExtResource("4_mvdqk")
 
 [node name="DoorArea" type="Area2D" parent="."]
 collision_layer = 0
@@ -40,5 +36,13 @@ collision_mask = 4
 position = Vector2(0, -32)
 shape = SubResource("RectangleShape2D_vt0ae")
 
+[node name="EnemyArea" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 8
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea"]
+position = Vector2(0, -32)
+shape = SubResource("RectangleShape2D_vt0ae")
+
 [connection signal="area_entered" from="DoorArea" to="." method="_on_door_area_area_entered"]
-[connection signal="area_exited" from="DoorArea" to="." method="_on_door_area_area_exited"]
+[connection signal="area_entered" from="EnemyArea" to="." method="_on_enemy_area_area_entered"]
