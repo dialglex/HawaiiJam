@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8gl1uisaffkl"]
+
+[ext_resource type="PackedScene" uid="uid://0riwe81rip1y" path="res://scenes/entity/background.tscn" id="1_cb80b"]
+[ext_resource type="PackedScene" uid="uid://5axlqfcfglx8" path="res://scenes/manager/level/level_manager.tscn" id="1_ulbg2"]
+
+[node name="MarginContainer" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" parent="." instance=ExtResource("1_cb80b")]
+
+[node name="LevelManager" parent="." instance=ExtResource("1_ulbg2")]
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+size_flags_horizontal = 4
+theme_override_font_sizes/font_size = 256
+text = "You win!"

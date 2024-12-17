@@ -3,7 +3,7 @@
 [ext_resource type="Shader" path="res://shaders/gradient.gdshader" id="1_od0r6"]
 
 [sub_resource type="Gradient" id="Gradient_pheli"]
-offsets = PackedFloat32Array(0, 0.5, 1)
+offsets = PackedFloat32Array(0, 0.38961, 0.857143)
 colors = PackedColorArray(0.420527, 0.00142871, 0.631672, 1, 1, 0.0666667, 0, 1, 0.929412, 0.666667, 0.0627451, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_1y1gl"]

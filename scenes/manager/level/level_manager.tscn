@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://5axlqfcfglx8"]
+[gd_scene load_steps=3 format=3 uid="uid://5axlqfcfglx8"]
 
 [ext_resource type="Script" path="res://scenes/manager/level/level_manager.gd" id="1_yxq8h"]
+[ext_resource type="AudioStream" uid="uid://dorlkiu5hktx" path="res://assets/sound/music/music.wav" id="2_oanoo"]
 
 [node name="LevelManager" type="Node" groups=["level_manager"]]
 script = ExtResource("1_yxq8h")
@@ -14,6 +15,11 @@ grow_vertical = 2
 
 [node name="Background" type="ColorRect" parent="MarginContainer"]
 unique_name_in_owner = true
+visible = false
 z_index = 10
 layout_mode = 2
 color = Color(0, 0, 0, 1)
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_oanoo")
+autoplay = true

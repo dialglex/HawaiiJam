@@ -38,4 +38,4 @@ func _process(delta: float) -> void:
 	else:
 		uv.material.set_shader_parameter("alpha", cos(WAVELENGTH_SPECIFICITY*(wavelength - UV_WAVELENGTH)))
 	
-	point.position.x = lerp(0.0, slider.custom_minimum_size.x, wavelength)
+	point.position.x = lerp(0.0, slider.custom_minimum_size.x, wavelength) - 16

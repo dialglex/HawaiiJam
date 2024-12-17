@@ -1,15 +1,34 @@
-[gd_scene load_steps=7 format=3 uid="uid://bplc5tcfc4x5a"]
+[gd_scene load_steps=10 format=3 uid="uid://bplc5tcfc4x5a"]
 
 [ext_resource type="Script" path="res://scenes/entity/enemy/enemy.gd" id="1_1r3l3"]
 [ext_resource type="PackedScene" uid="uid://chjppwcyrsogd" path="res://scenes/component/ai/enemy/enemy_ai_component.tscn" id="2_nw0w1"]
 [ext_resource type="PackedScene" uid="uid://dwy1ydktpn4qj" path="res://scenes/component/velocity/velocity_component.tscn" id="3_kg3ac"]
-[ext_resource type="Texture2D" uid="uid://4ia3pkxgm8ut" path="res://assets/image/enemy.png" id="4_v1e70"]
+[ext_resource type="Texture2D" uid="uid://crxb7bkqurqje" path="res://assets/image/wobot1.png" id="4_xl5vl"]
+[ext_resource type="Texture2D" uid="uid://bt51ita1e4i6p" path="res://assets/image/wobot2.png" id="5_507wg"]
+[ext_resource type="Texture2D" uid="uid://c3qwfrxuvjhiu" path="res://assets/image/wobot3.png" id="6_2srhc"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j86ts"]
-size = Vector2(64, 64)
+size = Vector2(64, 96)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_rui71"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xl5vl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_507wg")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_2srhc")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 8.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_m046m"]
-size = Vector2(64, 64)
+size = Vector2(64, 96)
 
 [node name="Enemy" type="CharacterBody2D"]
 use_parent_material = true
@@ -22,13 +41,15 @@ velocity_component = NodePath("../VelocityComponent")
 [node name="VelocityComponent" parent="." instance=ExtResource("3_kg3ac")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -48)
 shape = SubResource("RectangleShape2D_j86ts")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 use_parent_material = true
-position = Vector2(1, -32)
-texture = ExtResource("4_v1e70")
+position = Vector2(0, -48)
+sprite_frames = SubResource("SpriteFrames_rui71")
+animation = &"walk"
+frame_progress = 0.0196342
 
 [node name="LeftRayCast" type="RayCast2D" parent="."]
 position = Vector2(-32, -32)
@@ -51,5 +72,5 @@ collision_layer = 8
 collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
-position = Vector2(0, -32)
+position = Vector2(0, -48)
 shape = SubResource("RectangleShape2D_m046m")

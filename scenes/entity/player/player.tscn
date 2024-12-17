@@ -1,15 +1,59 @@
-[gd_scene load_steps=7 format=3 uid="uid://cdonv0bp8piyw"]
+[gd_scene load_steps=16 format=3 uid="uid://cdonv0bp8piyw"]
 
 [ext_resource type="Script" path="res://scenes/entity/player/player.gd" id="1_b1ueu"]
 [ext_resource type="PackedScene" uid="uid://ugibvbfhjpkf" path="res://scenes/component/ai/player/player_ai_component.tscn" id="2_svv4e"]
 [ext_resource type="PackedScene" uid="uid://dwy1ydktpn4qj" path="res://scenes/component/velocity/velocity_component.tscn" id="3_hwiit"]
-[ext_resource type="Texture2D" uid="uid://cp1cifnwgm0jc" path="res://assets/image/player.png" id="4_mvdqk"]
+[ext_resource type="Texture2D" uid="uid://cvltjbb8hdgw1" path="res://assets/image/dude_idle.png" id="4_6bm5a"]
+[ext_resource type="Texture2D" uid="uid://buv1nk352j1p4" path="res://assets/image/dude1.png" id="4_eipwe"]
+[ext_resource type="Texture2D" uid="uid://ccpyuo11tfc7j" path="res://assets/image/dude_air.png" id="5_3wexc"]
+[ext_resource type="Texture2D" uid="uid://c1jjp750yywk" path="res://assets/image/dude2.png" id="5_dn4wh"]
+[ext_resource type="Texture2D" uid="uid://d20g4a4pcjq7f" path="res://assets/image/dude3.png" id="6_v74lb"]
+[ext_resource type="Texture2D" uid="uid://bvsls3th50e57" path="res://assets/image/dude4.png" id="7_dcal4"]
+[ext_resource type="AudioStream" uid="uid://c2cs1fuhvirvs" path="res://assets/sound/sfx/meowdeathsound.wav" id="10_2acri"]
+[ext_resource type="AudioStream" uid="uid://bj8oq74lu0c3c" path="res://assets/sound/sfx/shmoodeathsound.wav" id="12_xnmrv"]
+[ext_resource type="AudioStream" uid="uid://dk3x1rcdvwg63" path="res://assets/sound/sfx/walking game jam.wav" id="13_21ip8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j86ts"]
-size = Vector2(64, 64)
+size = Vector2(64, 120)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_qddbc"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_3wexc")
+}],
+"loop": true,
+"name": &"air",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_6bm5a")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_eipwe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_dn4wh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_v74lb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dcal4")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vt0ae"]
-size = Vector2(64, 64)
+size = Vector2(64, 128)
 
 [node name="Player" type="CharacterBody2D"]
 collision_layer = 2
@@ -21,19 +65,20 @@ velocity_component = NodePath("../VelocityComponent")
 [node name="VelocityComponent" parent="." instance=ExtResource("3_hwiit")]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -32)
+position = Vector2(0, -60)
 shape = SubResource("RectangleShape2D_j86ts")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-position = Vector2(0, -32)
-texture = ExtResource("4_mvdqk")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(0, -64)
+sprite_frames = SubResource("SpriteFrames_qddbc")
+animation = &"air"
 
 [node name="DoorArea" type="Area2D" parent="."]
 collision_layer = 0
 collision_mask = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="DoorArea"]
-position = Vector2(0, -32)
+position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_vt0ae")
 
 [node name="EnemyArea" type="Area2D" parent="."]
@@ -41,8 +86,18 @@ collision_layer = 0
 collision_mask = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyArea"]
-position = Vector2(0, -32)
+position = Vector2(0, -64)
 shape = SubResource("RectangleShape2D_vt0ae")
+
+[node name="DeathSound1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_2acri")
+
+[node name="DeathSound2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("12_xnmrv")
+volume_db = 2.0
+
+[node name="WalkingSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("13_21ip8")
 
 [connection signal="area_entered" from="DoorArea" to="." method="_on_door_area_area_entered"]
 [connection signal="area_entered" from="EnemyArea" to="." method="_on_enemy_area_area_entered"]

@@ -8,12 +8,16 @@ var end := false
 @onready var background := %Background
 
 
+func _ready() -> void:
+	background.visible = true
+
+
 func _process(delta: float) -> void:
 	if end:
 		if background.modulate.a < 1.0:
 			background.modulate.a += background_transition_speed*delta
 		else:
-			pass
-			#get_tree().change_scene_to_packed.call_deferred(next_level)
+			if next_level:
+				get_tree().change_scene_to_packed.call_deferred(next_level)
 	elif background.modulate.a > 0.0:
 		background.modulate.a -= background_transition_speed*delta

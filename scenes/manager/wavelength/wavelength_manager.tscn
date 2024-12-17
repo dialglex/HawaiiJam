@@ -1,6 +1,15 @@
-[gd_scene load_steps=2 format=3 uid="uid://jbqktcy2a7f6"]
+[gd_scene load_steps=5 format=3 uid="uid://jbqktcy2a7f6"]
 
 [ext_resource type="Script" path="res://scenes/manager/wavelength/wavelength_manager.gd" id="1_4pqsh"]
+[ext_resource type="PackedScene" uid="uid://0riwe81rip1y" path="res://scenes/entity/background.tscn" id="2_gm2yv"]
+
+[sub_resource type="Gradient" id="Gradient_c4hdb"]
+offsets = PackedFloat32Array(0, 0.162338, 0.318182, 0.525974, 0.675325, 0.837662, 1)
+colors = PackedColorArray(0.419608, 0, 0.631373, 1, 1, 0.0666667, 0, 1, 0.929412, 0.666667, 0.0627451, 1, 1, 1, 1, 1, 0.823529, 0.819608, 1, 1, 0.811765, 0.227451, 1, 1, 0.396078, 0.0196078, 0.415686, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_4j782"]
+gradient = SubResource("Gradient_c4hdb")
+height = 8
 
 [node name="WavelengthManager" type="Node"]
 script = ExtResource("1_4pqsh")
@@ -12,20 +21,63 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/margin_bottom = 128
+theme_override_constants/margin_bottom = 32
 
 [node name="Slider" type="ColorRect" parent="MarginContainer"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(1024, 32)
+custom_minimum_size = Vector2(1024, 64)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
-color = Color(0.501961, 0.501961, 0.501961, 1)
+color = Color(0, 0, 0, 1)
 
-[node name="Point" type="ColorRect" parent="MarginContainer/Slider"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Slider"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Gradient" type="TextureRect" parent="MarginContainer/Slider/MarginContainer"]
+layout_mode = 2
+texture = SubResource("GradientTexture2D_4j782")
+
+[node name="Point" type="ColorRect" parent="MarginContainer/Slider/MarginContainer/Gradient"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(16, 96)
-layout_mode = 0
-offset_top = -32.0
+custom_minimum_size = Vector2(32, 96)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -16.0
+offset_top = -48.0
 offset_right = 16.0
-offset_bottom = 64.0
+offset_bottom = 48.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/Slider/MarginContainer/Gradient/Point"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="ColorRect" type="ColorRect" parent="MarginContainer/Slider/MarginContainer/Gradient/Point/MarginContainer"]
+layout_mode = 2
+
+[node name="Background" parent="." instance=ExtResource("2_gm2yv")]
+visible = false

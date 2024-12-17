@@ -6,5 +6,6 @@ uniform float alpha: hint_range(0.0, 1.0);
 
 void fragment() {
 	float r = texture(TEXTURE, UV).r;
-	COLOR = vec4(texture(sampler, vec2(r, 0.5)).rgb, alpha);
+	float a = texture(TEXTURE, UV).a;
+	COLOR = vec4(texture(sampler, vec2(r, 0.5)).rgb, alpha*a);
 }
