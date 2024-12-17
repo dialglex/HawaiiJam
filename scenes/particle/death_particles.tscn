@@ -1,0 +1,41 @@
+[gd_scene load_steps=7 format=3 uid="uid://cc2a374kf4a22"]
+
+[ext_resource type="Texture2D" uid="uid://c3a70vyafwh6x" path="res://assets/image/particle.png" id="1_t7qed"]
+
+[sub_resource type="Gradient" id="Gradient_1g8cp"]
+offsets = PackedFloat32Array(0)
+colors = PackedColorArray(1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_gcpac"]
+gradient = SubResource("Gradient_1g8cp")
+
+[sub_resource type="Curve" id="Curve_68l3k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), -2.3153, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_rok1e"]
+curve = SubResource("Curve_68l3k")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_2kaxw"]
+particle_flag_disable_z = true
+particle_flag_damping_as_friction = true
+spread = 180.0
+initial_velocity_min = 1000.0
+initial_velocity_max = 1000.0
+angular_velocity_min = -180.0
+angular_velocity_max = 180.0
+gravity = Vector3(0, 0, 0)
+damping_min = 0.3
+damping_max = 0.3
+scale_min = 0.5
+scale_curve = SubResource("CurveTexture_rok1e")
+color_ramp = SubResource("GradientTexture1D_gcpac")
+
+[node name="DeathParticles" type="GPUParticles2D"]
+position = Vector2(64, 64)
+emitting = false
+amount = 20
+process_material = SubResource("ParticleProcessMaterial_2kaxw")
+texture = ExtResource("1_t7qed")
+one_shot = true
+explosiveness = 1.0
