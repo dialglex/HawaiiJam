@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=4 uid="uid://bsfcf4mx23yyd"]
+[gd_scene load_steps=11 format=4 uid="uid://bsfcf4mx23yyd"]
 
 [ext_resource type="Texture2D" uid="uid://bpxtdnjuxqd42" path="res://assets/image/labratory.jpg" id="1_e6v6l"]
 [ext_resource type="PackedScene" uid="uid://jbqktcy2a7f6" path="res://scenes/manager/wavelength/wavelength_manager.tscn" id="1_mtdgs"]
@@ -8,11 +8,14 @@
 [ext_resource type="Material" uid="uid://cpsculc5nwfgf" path="res://resources/uv_shader_material.tres" id="5_a04do"]
 [ext_resource type="PackedScene" uid="uid://dikyxxl3641cp" path="res://scenes/entity/door/door.tscn" id="5_npy6j"]
 [ext_resource type="PackedScene" uid="uid://bplc5tcfc4x5a" path="res://scenes/entity/enemy/enemy.tscn" id="8_edskk"]
+[ext_resource type="PackedScene" uid="uid://5axlqfcfglx8" path="res://scenes/manager/level/level_manager.tscn" id="9_gikdu"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hghbv"]
 size = Vector2(128, 128)
 
 [node name="World" type="Node"]
+
+[node name="LevelManager" parent="." instance=ExtResource("9_gikdu")]
 
 [node name="WavelengthManager" parent="." node_paths=PackedStringArray("ir", "v", "uv") instance=ExtResource("1_mtdgs")]
 ir = NodePath("../IR")

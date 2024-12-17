@@ -1,8 +1,8 @@
+class_name Player
 extends CharacterBody2D
 
 
 var starting_position: Vector2
-@export var next_level: PackedScene
 
 
 func _ready() -> void:
@@ -10,7 +10,8 @@ func _ready() -> void:
 
 
 func _on_door_area_area_entered(_area: Area2D) -> void:
-	get_tree().change_scene_to_packed.call_deferred(next_level)
+	var level_manager := get_tree().get_first_node_in_group("level_manager") as LevelManager
+	level_manager.end = true
 
 
 func _on_enemy_area_area_entered(area: Area2D) -> void:
