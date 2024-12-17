@@ -17,5 +17,5 @@ grow_vertical = 2
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 4
-theme_override_font_sizes/font_size = 256
-text = "You win!"
+theme_override_font_sizes/font_size = 128
+text = "Demo complete!"

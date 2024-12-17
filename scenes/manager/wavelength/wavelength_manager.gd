@@ -12,6 +12,7 @@ var target_wavelength := V_WAVELENGTH
 
 @onready var slider := %Slider
 @onready var point := %Point
+@onready var label := %Label
 
 @export var ir: Node2D
 @export var v: Node2D
@@ -37,5 +38,13 @@ func _process(delta: float) -> void:
 		v.self_modulate.a = cos(WAVELENGTH_SPECIFICITY*(wavelength - V_WAVELENGTH))
 	else:
 		uv.material.set_shader_parameter("alpha", cos(WAVELENGTH_SPECIFICITY*(wavelength - UV_WAVELENGTH)))
+	
+	if target_wavelength < 1.0/3.0:
+		label.text = "Infrared"
+	elif target_wavelength < 2.0/3.0:
+		label.text = "Visible Light"
+	else:
+		label.text = "Ultraviolet"
+		
 	
 	point.position.x = lerp(0.0, slider.custom_minimum_size.x, wavelength) - 16

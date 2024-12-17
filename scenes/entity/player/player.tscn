@@ -14,7 +14,7 @@
 [ext_resource type="AudioStream" uid="uid://dk3x1rcdvwg63" path="res://assets/sound/sfx/walking game jam.wav" id="13_21ip8"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j86ts"]
-size = Vector2(64, 120)
+size = Vector2(56, 120)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_qddbc"]
 animations = [{
